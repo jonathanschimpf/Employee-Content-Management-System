@@ -1,0 +1,25 @@
+{
+  "name": "employee-content-management-system",
+  "version": "1.0.0",
+  "description": "employee content management system via MySQL, inquirer.js, & console.table",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathanschimpf/Employee-Content-Management-System.git"
+  },
+  "author": "Jonathan Schimpf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathanschimpf/Employee-Content-Management-System/issues"
+  },
+  "homepage": "https://github.com/jonathanschimpf/Employee-Content-Management-System#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "dotenv": "^8.2.0",
+    "inquirer": "^7.3.3",
+    "mysql": "^2.18.1"
+  }
+}
