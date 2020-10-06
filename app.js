@@ -57,25 +57,26 @@ function mainMenu() {
   inquirer.prompt({
 
     type: "list",
-    message: "What would you like to do?",
+    message: "What would you like to do?\n\n",
     name: "selection",
     choices:
 
       [
+        //commented out means incomplete as of now.
 
         "View All Of The Employees",
-        "View All Employees By Department",
-        "View All Employees By Manager",
+        // "View All Employees By Department",
+        // "View All Employees By Manager",
         "View All Of The Departments",
         "View All Of The Employee Roles",
         "Add A New Department",
-        "Add A New Employee",
+        // "Add A New Employee",
         "Add A New Employee Role",
-        "Update An Employee's Role",
-        "Update An Employee's Manager",
-        "Remove An Existing Employee",
-        "Remove An Existing Department",
-        "Remove An Existing Employee Role",
+        // "Update An Employee's Role",
+        // "Update An Employee's Manager",
+        // "Remove An Existing Employee",
+        // "Remove An Existing Department",
+        // "Remove An Existing Employee Role",
         "Exit The Application"
 
       ]
@@ -92,27 +93,27 @@ function mainMenu() {
 
 
         // view 
-
+        // tested & working
         case "View All Of The Employees":
           functions.allEmployees(connection, mainMenu);
           break;
 
 
-        case "View All Employees By Department":
-          functions.allEmployeesByDepartment(connection, mainMenu);
-          break;
+        // case "View All Employees By Department":
+        //   functions.allEmployeesByDepartment(connection, mainMenu);
+        //   break;
 
 
-        case "View All Employees By Manager":
-          functions.allEmployeesByManager(connection, mainMenu);
-          break;
+        // case "View All Employees By Manager":
+        //   functions.allEmployeesByManager(connection, mainMenu);
+        //   break;
 
-
+        // tested & working
         case "View All Of The Departments":
           functions.allDepartments(connection, mainMenu);
           break;
 
-
+        // tested & working
         case "View All Of The Employee Roles":
           functions.allEmployeeRoles(connection, mainMenu);
           break;
@@ -121,6 +122,7 @@ function mainMenu() {
 
         // add 
 
+        // tested & working
         case "Add A New Department":
           functions.addNewDepartment(connection, mainMenu);
           break;
@@ -130,7 +132,7 @@ function mainMenu() {
           functions.addNewEmployee(connection, mainMenu);
           break;
 
-
+        // tested & working
         case "Add A New Employee Role":
           functions.addNewEmployeeRole(connection, mainMenu);
           break;
@@ -144,26 +146,26 @@ function mainMenu() {
           break;
 
 
-        case "Update An Employee's Manager":
-          functions.updateEmployeeManager(connection, mainMenu);
-          break;
+        // case "Update An Employee's Manager":
+        //   functions.updateEmployeeManager(connection, mainMenu);
+        //   break;
 
 
         // remove 
 
-        case "Remove An Existing Employee":
-          functions.removeEmployee(connection, mainMenu);
-          break;
+        // case "Remove An Existing Employee":
+        //   functions.removeEmployee(connection, mainMenu);
+        //   break;
 
 
-        case "Remove An Existing Department":
-          functions.removeDepartment(connection, mainMenu);
-          break;
+        // case "Remove An Existing Department":
+        //   functions.removeDepartment(connection, mainMenu);
+        //   break;
 
 
-        case "Remove An Existing Employee Role":
-          functions.removeEmployeeRole(connection, mainMenu);
-          break;
+        // case "Remove An Existing Employee Role":
+        //   functions.removeEmployeeRole(connection, mainMenu);
+        //   break;
 
 
         // exit
