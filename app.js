@@ -1,7 +1,6 @@
 
 // requirements for application.
 
-
 // requirements for dotenv security feature
 
 require("dotenv").config();
@@ -9,13 +8,9 @@ require("dotenv").config();
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 
-// require("console.table"); <-- this is already required in functions.js
-// leaving here for now just in case it's needed in both locations.
-
 // calling requiring the functions page, making the connection.
 
 var functions = require("./functions.js");
-
 
 
 // connection to MySQL database
@@ -35,7 +30,6 @@ connection.connect(function (err) {
   if (err) throw err;
 
   console.log("Connected as ID# " + connection.threadId + "\n");
-
 
   console.log("\n")
   console.log("---------------------------------------------------")
@@ -90,9 +84,8 @@ function mainMenu() {
 
       switch (response.selection) {
 
-
-
         // view 
+
         // tested & working
         case "View All Of The Employees":
           functions.allEmployees(connection, mainMenu);
@@ -117,7 +110,6 @@ function mainMenu() {
         case "View All Of The Employee Roles":
           functions.allEmployeeRoles(connection, mainMenu);
           break;
-
 
 
         // add 
@@ -182,6 +174,5 @@ function mainMenu() {
       }
 
     })
-
 
 };

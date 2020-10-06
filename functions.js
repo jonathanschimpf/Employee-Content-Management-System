@@ -1,14 +1,17 @@
 
+
 // require inquirer for prompts..
 
 const inquirer = require("inquirer");
 
 // require console.table for table layout
-// replace when running console.log
 
 require("console.table");
 
+// shout out to the app.js file
+
 require("./app.js");
+
 
 // *************
 // add functions
@@ -41,7 +44,6 @@ function addNewDepartment(connection, mainMenu) {
 
         connection.query("INSERT INTO department_info (department_name) VALUES (?)", response.department_name, (err, res) => {
 
-
             if (err) throw err;
 
             console.log("\n\n");
@@ -52,9 +54,7 @@ function addNewDepartment(connection, mainMenu) {
 
         });
 
-
     })
-
 
 };
 
@@ -63,13 +63,18 @@ function addNewEmployeeRole(connection, mainMenu) {
 
     
     connection.query("SELECT * FROM department_info", function (err, res) {
+
         const departmentChoices = res.map(row => {
+
             const choice = {
+
                 name: row.department_name,
                 value: row.id
+
             };
 
             return choice
+
         })
         inquirer.prompt([
 
@@ -121,12 +126,9 @@ function addNewEmployeeRole(connection, mainMenu) {
 
             }
 
-        ])
-
-        .then(function (response) {
+        ]).then(function (response) {
 
             connection.query("INSERT INTO role_info SET ?", response, (err, res) => {
-    
     
                 if (err) throw err;
     
@@ -138,18 +140,16 @@ function addNewEmployeeRole(connection, mainMenu) {
     
             });
     
-    
         })
+    
     })
-
-    // mainMenu();
 
 };
 
 
 
 function addNewEmployee(connection, mainMenu) {
-
+//
     connection.query()
 
     mainMenu();
