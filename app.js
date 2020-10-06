@@ -64,7 +64,7 @@ function mainMenu() {
         "View All Of The Departments",
         "View All Of The Employee Roles",
         "Add A New Department",
-        // "Add A New Employee",
+        "Add A New Employee",
         "Add A New Employee Role",
         // "Update An Employee's Role",
         // "Update An Employee's Manager",
