@@ -62,7 +62,7 @@ View the application usage demo here =>‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎�
 <p>&nbsp;<p>
 
 
-To make use of this application, you must first download the repo, and then run `npm install` within the terminal to begin the install of `inquirer``MySQL`, & `console.table` dependencies. These required dependencies are already provided within the included `package.json` file. 
+To make use of this application, you must first download the repo, and then run `npm install` within the terminal to begin the install of `inquirer`, `MySQL`, & `console.table` dependencies. These required dependencies are already provided within the included `package.json` file. 
 
 <p>&nbsp;<p>
 
