@@ -66,7 +66,7 @@ function mainMenu() {
         "Add A New Department",
         "Add A New Employee",
         "Add A New Employee Role",
-        // "Update An Employee's Role",
+        "Update An Employee's Role",
         // "Update An Employee's Manager",
         // "Remove An Existing Employee",
         // "Remove An Existing Department",
@@ -119,7 +119,7 @@ function mainMenu() {
           functions.addNewDepartment(connection, mainMenu);
           break;
 
-
+        //tested & working
         case "Add A New Employee":
           functions.addNewEmployee(connection, mainMenu);
           break;
@@ -154,10 +154,10 @@ function mainMenu() {
         //   functions.removeDepartment(connection, mainMenu);
         //   break;
 
-
-        // case "Remove An Existing Employee Role":
-        //   functions.removeEmployeeRole(connection, mainMenu);
-        //   break;
+        //not working
+        case "Remove An Existing Employee Role":
+          functions.removeEmployeeRole(connection, mainMenu);
+          break;
 
 
         // exit
