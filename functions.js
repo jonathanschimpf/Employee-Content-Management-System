@@ -135,7 +135,7 @@ function addNewEmployeeRole(connection, mainMenu) {
                     throw err;
 
                 console.log("\n\n");
-                console.log("Your new department has been successfully created.");
+                console.log("Your new employee role has been successfully created.");
                 console.log("\n\n");
 
                 mainMenu();
@@ -171,7 +171,7 @@ function addNewEmployee(connection, mainMenu) {
 
                     if (response.length < 1) {
 
-                        return console.log("That is not a first name. Please try again");
+                        return console.log("That is not a valid first name. Please try again");
 
                     }
 
@@ -237,7 +237,8 @@ function addNewEmployee(connection, mainMenu) {
 
                 connection.query("SELECT * from employee_info", (err, res) => {
 
-                    if (err) throw err;
+                    if (err) 
+                        throw err;
 
                     inquirer.prompt([
 
@@ -273,7 +274,8 @@ function addNewEmployee(connection, mainMenu) {
 
                                 connection.query("INSERT INTO employee_info SET ?", newHire, (err, res) => {
 
-                                    if (err) throw err;
+                                    if (err) 
+                                        throw err;
 
                                     console.log("\n\n");
                                     console.log("Your new employee has been successfully created.");
@@ -323,13 +325,13 @@ function allEmployees(connection, mainMenu) {
 };
 
 
-function allEmployeesByDepartment(connection, mainMenu) {
+// function allEmployeesByDepartment(connection, mainMenu) {
 
-    connection.query()
+//     connection.query()
 
-    mainMenu();
+//     mainMenu();
 
-};
+// };
 
 
 function allDepartments(connection, mainMenu) {
@@ -474,81 +476,81 @@ function updateEmployeeRole(connection, mainMenu) {
     
 
 
-function updateEmployeeManager(connection, mainMenu) {
+// function updateEmployeeManager(connection, mainMenu) {
 
-    connection.query()
+//     connection.query()
 
-    mainMenu();
-};
-
-
-function removeEmployee(connection, mainMenu) {
-
-    connection.query()
-
-    mainMenu();
-
-};
+//     mainMenu();
+// };
 
 
-function removeDepartment(connection, mainMenu) {
+// function removeEmployee(connection, mainMenu) {
 
-    connection.query()
+//     connection.query()
 
-    mainMenu();
+//     mainMenu();
 
-};
+// };
+
+
+// function removeDepartment(connection, mainMenu) {
+
+//     connection.query()
+
+//     mainMenu();
+
+// };
 
 // not working
-function removeEmployeeRole(connection, mainMenu) {
+// function removeEmployeeRole(connection, mainMenu) {
 
-    connection.query("SELECT * FROM role_info", function (err, res) {
+//     connection.query("SELECT * FROM role_info", function (err, res) {
 
-        if (err)
-            throw err;
+//         if (err)
+//             throw err;
 
-        inquirer.prompt([
+//         inquirer.prompt([
 
-            {
-                type: "list",
-                name: "remove",
-                message: "Which one of the current roles would you like to remove?",
-                choices: function () {
+//             {
+//                 type: "list",
+//                 name: "remove",
+//                 message: "Which one of the current roles would you like to remove?",
+//                 choices: function () {
 
-                    let choice = [];
+//                     let choice = [];
 
-                    for (var i = 0; i < res.length; i++) {
+//                     for (var i = 0; i < res.length; i++) {
 
-                        choice.push(res[i].title);
-                    }
+//                         choice.push(res[i].title);
+//                     }
 
-                    return choice;
-                },
+//                     return choice;
+//                 },
 
-            }
+//             }
 
-        ]).then(function (response) {
+//         ]).then(function (response) {
 
            
-            connection.query("DELETE FROM role_info WHERE title = ?", response.remove, function (err, res) {
+//             connection.query("DELETE FROM role_info WHERE title = ?", response.remove, function (err, res) {
 
-                if (err)
+//                 if (err)
 
-                    throw err;
+//                     throw err;
 
-                console.log("\n\n");
-                console.log("This role has been successfully removed.");
-                console.log("\n\n");
+//                 console.log("\n\n");
+//                 console.log("This role has been successfully removed.");
+//                 console.log("\n\n");
 
-                mainMenu();
+//                 mainMenu();
 
-            });
+//             });
 
-        });
+//         });
 
-    });
+//     });
 
-};
+// };
 
 
 
@@ -568,7 +570,7 @@ module.exports = {
     // view
 
     allEmployees: allEmployees,
-    allEmployeesByDepartment: allEmployeesByDepartment,
+    // allEmployeesByDepartment: allEmployeesByDepartment,
     allDepartments: allDepartments,
     allEmployeeRoles: allEmployeeRoles,
 
@@ -583,168 +585,13 @@ module.exports = {
     // updating + deleting
 
     updateEmployeeRole: updateEmployeeRole,
-    updateEmployeeManager: updateEmployeeManager,
-    removeEmployee: removeEmployee,
-    removeDepartment: removeDepartment,
-    removeEmployeeRole: removeEmployeeRole,
+    // updateEmployeeManager: updateEmployeeManager,
+    // removeEmployee: removeEmployee,
+    // removeDepartment: removeDepartment,
+    // removeEmployeeRole: removeEmployeeRole,
 
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-// function addNewEmployee(connection, mainMenu) {
-
-//     const newHire = {};
-
-//     connection.query("SELECT * FROM role_info", function (err, res) {
-
-//         if (err)
-//             throw err;
-
-//         inquirer.prompt([
-
-//             {
-//                 type: "input",
-//                 name: "first_name",
-//                 message: "What is the first name of your newly hired employee?",
-//                 default: "John",
-//                 validate: function (response) {
-
-//                     if (response.length < 1) {
-
-//                         return console.log("That is not a first name. Please try again");
-
-//                     }
-
-//                     return true;
-
-//                 }
-
-//             },
-
-//             {
-//                 type: "input",
-//                 name: "last_name",
-//                 message: "What is the last name of your newly hired employee?",
-//                 default: "Doe",
-//                 validate: function (response) {
-
-//                     if (response.length < 1) {
-
-//                         return console.log("That is not a valid last name. Please try again");
-
-//                     }
-
-//                     return true;
-
-//                 }
-
-//             },
-
-//             {
-
-//                 type: "list",
-//                 name: "role_id",
-//                 message: "What role will this newly hired employee be filling?",
-//                 default: "Web Developer",
-//                 choices: function () {
-
-//                     const choice = [];
-
-//                     for (var i = 0; i < res.length; i++) {
-
-//                         choice.push(res[i].title);
-
-//                     }
-
-//                     return choice;
-
-//                 },
-
-//             },
-
-
-//         ]).then(function (response) {
-
-//             newHire.first_name = response.first_name;
-//             newHire.last_name = response.last_name;
-
-//             connection.query("SELECT * FROM role_info WHERE title = ?", response.role_id, function (err, res) {
-
-//                 if (err)
-//                     throw err;
-
-//                 newHire.role_id = res[0].id;
-
-//                 connection.query("SELECT * from employee_info", (err, res) => {
-
-//                     if (err) throw err;
-
-//                     inquirer.prompt([
-
-//                         {
-//                             type: "list",
-//                             name: "manager_name",
-//                             message: "Who is this newly hired employee's manager?",
-//                             choices: function () {
-
-//                                 let choice = [];
-
-//                                 for (var i = 0; i < res.length; i++) {
-
-//                                     choice.push(res[i].first_name);
-//                                 }
-
-//                                 return choice;
-
-//                             },
-//                         }
-
-//                     ])
-
-//                 }).then(function (response) {
-
-//                     connection.query("SELECT id FROM employee_info WHERE first_name = ?", response.manager_name, function (err, res) {
-
-//                         if (err)
-//                             throw err;
-
-//                         newHire.manager_id = res[0].id;
-
-
-//                         connection.query("INSERT INTO employee_info SET ?", newHire, (err, res) => {
-
-//                             if (err) throw err;
-
-//                             console.log("\n\n");
-//                             console.log("Your new employee has been successfully created.");
-//                             console.log("\n\n");
-
-//                             mainMenu();
-
-//                         })
-
-//                     })
-
-//                 });
-
-//             });
-
-//         });
-
-//     });
-
-// };
 
 
 

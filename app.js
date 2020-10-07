@@ -132,7 +132,7 @@ function mainMenu() {
 
 
         // update 
-
+        //tested & working
         case "Update An Employee's Role":
           functions.updateEmployeeRole(connection, mainMenu);
           break;
@@ -155,9 +155,9 @@ function mainMenu() {
         //   break;
 
         //not working
-        case "Remove An Existing Employee Role":
-          functions.removeEmployeeRole(connection, mainMenu);
-          break;
+        // case "Remove An Existing Employee Role":
+        //   functions.removeEmployeeRole(connection, mainMenu);
+        //   break;
 
 
         // exit
