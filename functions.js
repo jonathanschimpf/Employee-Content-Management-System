@@ -261,29 +261,31 @@ function addNewEmployee(connection, mainMenu) {
 
                     ])
 
-                }).then(function (response) {
+                        .then(function (response) {
 
-                    connection.query("SELECT id FROM employee_info WHERE first_name = ?", response.manager_name, function (err, res) {
+                            connection.query("SELECT id FROM employee_info WHERE first_name = ?", response.manager_name, function (err, res) {
 
-                        if (err)
-                            throw err;
+                                if (err)
+                                    throw err;
 
-                        newHire.manager_id = res[0].id;
+                                newHire.manager_id = res[0].id;
 
 
-                        connection.query("INSERT INTO employee_info SET ?", newHire, (err, res) => {
+                                connection.query("INSERT INTO employee_info SET ?", newHire, (err, res) => {
 
-                            if (err) throw err;
+                                    if (err) throw err;
 
-                            console.log("\n\n");
-                            console.log("Your new employee has been successfully created.");
-                            console.log("\n\n");
+                                    console.log("\n\n");
+                                    console.log("Your new employee has been successfully created.");
+                                    console.log("\n\n");
 
-                            mainMenu();
+                                    mainMenu();
 
-                        })
+                                })
 
-                    })
+                            })
+
+                        });
 
                 });
 
@@ -410,10 +412,12 @@ function removeDepartment(connection, mainMenu) {
 
 function removeEmployeeRole(connection, mainMenu) {
 
-    connection.query()
 
-    mainMenu();
-};
+    
+    };
+
+
+
 
 
 
@@ -452,3 +456,161 @@ module.exports = {
 
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+// function addNewEmployee(connection, mainMenu) {
+
+//     const newHire = {};
+
+//     connection.query("SELECT * FROM role_info", function (err, res) {
+
+//         if (err)
+//             throw err;
+
+//         inquirer.prompt([
+
+//             {
+//                 type: "input",
+//                 name: "first_name",
+//                 message: "What is the first name of your newly hired employee?",
+//                 default: "John",
+//                 validate: function (response) {
+
+//                     if (response.length < 1) {
+
+//                         return console.log("That is not a first name. Please try again");
+
+//                     }
+
+//                     return true;
+
+//                 }
+
+//             },
+
+//             {
+//                 type: "input",
+//                 name: "last_name",
+//                 message: "What is the last name of your newly hired employee?",
+//                 default: "Doe",
+//                 validate: function (response) {
+
+//                     if (response.length < 1) {
+
+//                         return console.log("That is not a valid last name. Please try again");
+
+//                     }
+
+//                     return true;
+
+//                 }
+
+//             },
+
+//             {
+
+//                 type: "list",
+//                 name: "role_id",
+//                 message: "What role will this newly hired employee be filling?",
+//                 default: "Web Developer",
+//                 choices: function () {
+
+//                     const choice = [];
+
+//                     for (var i = 0; i < res.length; i++) {
+
+//                         choice.push(res[i].title);
+
+//                     }
+
+//                     return choice;
+
+//                 },
+
+//             },
+
+
+//         ]).then(function (response) {
+
+//             newHire.first_name = response.first_name;
+//             newHire.last_name = response.last_name;
+
+//             connection.query("SELECT * FROM role_info WHERE title = ?", response.role_id, function (err, res) {
+
+//                 if (err)
+//                     throw err;
+
+//                 newHire.role_id = res[0].id;
+
+//                 connection.query("SELECT * from employee_info", (err, res) => {
+
+//                     if (err) throw err;
+
+//                     inquirer.prompt([
+
+//                         {
+//                             type: "list",
+//                             name: "manager_name",
+//                             message: "Who is this newly hired employee's manager?",
+//                             choices: function () {
+
+//                                 let choice = [];
+
+//                                 for (var i = 0; i < res.length; i++) {
+
+//                                     choice.push(res[i].first_name);
+//                                 }
+
+//                                 return choice;
+
+//                             },
+//                         }
+
+//                     ])
+
+//                 }).then(function (response) {
+
+//                     connection.query("SELECT id FROM employee_info WHERE first_name = ?", response.manager_name, function (err, res) {
+
+//                         if (err)
+//                             throw err;
+
+//                         newHire.manager_id = res[0].id;
+
+
+//                         connection.query("INSERT INTO employee_info SET ?", newHire, (err, res) => {
+
+//                             if (err) throw err;
+
+//                             console.log("\n\n");
+//                             console.log("Your new employee has been successfully created.");
+//                             console.log("\n\n");
+
+//                             mainMenu();
+
+//                         })
+
+//                     })
+
+//                 });
+
+//             });
+
+//         });
+
+//     });
+
+// };
+
+
+
