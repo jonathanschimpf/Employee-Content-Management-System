@@ -58,9 +58,9 @@ function mainMenu() {
 
       [
         //commented out means incomplete as of now.
+        // MVP met, may revisit for future development.
 
         "View All Of The Employees",
-        // "View All Employees By Department",
         // "View All Employees By Manager",
         "View All Of The Departments",
         "View All Of The Employee Roles",
@@ -91,12 +91,6 @@ function mainMenu() {
         case "View All Of The Employees":
           functions.allEmployees(connection, mainMenu);
           break;
-
-
-        // case "View All Employees By Department":
-        //   functions.allEmployeesByDepartment(connection, mainMenu);
-        //   break;
-
 
         // case "View All Employees By Manager":
         //   functions.allEmployeesByManager(connection, mainMenu);

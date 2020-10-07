@@ -237,7 +237,7 @@ function addNewEmployee(connection, mainMenu) {
 
                 connection.query("SELECT * from employee_info", (err, res) => {
 
-                    if (err) 
+                    if (err)
                         throw err;
 
                     inquirer.prompt([
@@ -260,34 +260,34 @@ function addNewEmployee(connection, mainMenu) {
                             },
                         }
 
-                    ])
 
-                        .then(function (response) {
 
-                            connection.query("SELECT id FROM employee_info WHERE first_name = ?", response.manager_name, function (err, res) {
+                    ]).then(function (response) {
+
+                        connection.query("SELECT id FROM employee_info WHERE first_name = ?", response.manager_name, function (err, res) {
+
+                            if (err)
+                                throw err;
+
+                            newHire.manager_id = res[0].id;
+
+
+                            connection.query("INSERT INTO employee_info SET ?", newHire, (err, res) => {
 
                                 if (err)
                                     throw err;
 
-                                newHire.manager_id = res[0].id;
+                                console.log("\n\n");
+                                console.log("Your new employee has been successfully created.");
+                                console.log("\n\n");
 
-
-                                connection.query("INSERT INTO employee_info SET ?", newHire, (err, res) => {
-
-                                    if (err) 
-                                        throw err;
-
-                                    console.log("\n\n");
-                                    console.log("Your new employee has been successfully created.");
-                                    console.log("\n\n");
-
-                                    mainMenu();
-
-                                })
+                                mainMenu();
 
                             })
 
-                        });
+                        })
+
+                    });
 
                 });
 
@@ -324,14 +324,6 @@ function allEmployees(connection, mainMenu) {
 
 };
 
-
-// function allEmployeesByDepartment(connection, mainMenu) {
-
-//     connection.query()
-
-//     mainMenu();
-
-// };
 
 
 function allDepartments(connection, mainMenu) {
@@ -381,20 +373,48 @@ function allEmployeeRoles(connection, mainMenu) {
 function updateEmployeeRole(connection, mainMenu) {
 
 
+    let newRole = {};
+
+    connection.query("SELECT employee_info.id, employee_info.first_name, employee_info.last_name, role_info.title, role_info.salary, department_info.department_name AS department, manager_alias.first_name AS manager FROM employee_info LEFT JOIN employee_info AS manager_alias ON manager_alias.id = employee_info.manager_id JOIN role_info ON employee_info.role_id = role_info.id JOIN department_info ON role_info.department_id = department_info.id ORDER BY employee_info.id", (err, res) => {
+
+        if (err)
+            throw err;
 
 
-        let newRole = {};
-    
-        connection.query("SELECT employee_info.id, employee_info.first_name, employee_info.last_name, role_info.title, role_info.salary, department_info.department_name AS department, manager_alias.first_name AS manager FROM employee_info LEFT JOIN employee_info AS manager_alias ON manager_alias.id = employee_info.manager_id JOIN role_info ON employee_info.role_id = role_info.id JOIN department_info ON role_info.department_id = department_info.id ORDER BY employee_info.id", (err, res) => {
+        inquirer.prompt([
 
-            if (err) 
-                throw err;
+            {
+                name: "employee_info",
+                type: "list",
+                choices: function () {
 
-           
-            inquirer.prompt([
+                    let choice = [];
+
+                    for (var i = 0; i < res.length; i++) {
+
+                        choice.push(res[i].first_name);
+                    }
+
+                    return choice;
+                },
+
+                message: "Which one of your employees would you like to update?"
+            }
+
+        ]).then(function (response) {
+
+            newRole.first_name = response.employee_info;
+
+            connection.query("SELECT * FROM role_info", function (err, res) {
+
+                if (err)
+                    throw err;
+
+
+                inquirer.prompt([
 
                     {
-                        name: "employee_info",
+                        name: "newRole",
                         type: "list",
                         choices: function () {
 
@@ -402,79 +422,50 @@ function updateEmployeeRole(connection, mainMenu) {
 
                             for (var i = 0; i < res.length; i++) {
 
-                                choice.push(res[i].first_name);
+                                choice.push(res[i].title);
                             }
 
                             return choice;
                         },
 
-                        message: "Which one of your employees would you like to update?"
+                        message: "What would you like you to update their role to?"
                     }
-                
+
                 ]).then(function (response) {
-    
-                    newRole.first_name = response.employee_info;
-    
-                    connection.query("SELECT * FROM role_info", function (err, res) {
-                        
-                        if (err) 
+
+                    connection.query("SELECT * FROM role_info WHERE title = ?", response.newRole, function (err, res) {
+
+                        if (err)
                             throw err;
 
-                        
-                        inquirer.prompt([
+                        newRole.role_id = res[0].id;
 
-                                {
-                                    name: "newRole",
-                                    type: "list",
-                                    choices: function () {
+                        connection.query("UPDATE employee_info SET role_id = ? WHERE first_name = ?", [newRole.role_id, newRole.first_name], function (err, res) {
 
-                                        let choice = [];
+                            if (err)
+                                throw err;
 
-                                        for (var i = 0; i < res.length; i++) {
+                            console.log("\n\n");
+                            console.log("Your employee's role has been successfully updated.");
+                            console.log("\n\n");
 
-                                            choice.push(res[i].title);
-                                        }
+                            mainMenu();
+                        })
 
-                                        return choice;
-                                    },
+                    })
 
-                                    message: "What would you like you to update their role to?"
-                                }
-                            
-                            ]).then(function (response) {
-                                
-                                connection.query("SELECT * FROM role_info WHERE title = ?", response.newRole, function (err, res) {
+                });
 
-                                    if (err) 
-                                        throw err;
-    
-                                    newRole.role_id = res[0].id;
-    
-                                    connection.query("UPDATE employee_info SET role_id = ? WHERE first_name = ?", [newRole.role_id, newRole.first_name], function (err, res) {
+            });
 
-                                        if (err) 
-                                            throw err;
+        });
 
-                                        console.log("\n\n");
-                                        console.log("Your employee's role has been successfully updated.");
-                                        console.log("\n\n");
+    })
 
-                                        mainMenu();
-                                    })
-    
-                                })
-                            
-                            });
-                        
-                        });
-                    
-                    });
-           
-                })
-    
-            };
-    
+};
 
+
+// *** archived for future development ***
 
 // function updateEmployeeManager(connection, mainMenu) {
 
@@ -531,7 +522,7 @@ function updateEmployeeRole(connection, mainMenu) {
 
 //         ]).then(function (response) {
 
-           
+
 //             connection.query("DELETE FROM role_info WHERE title = ?", response.remove, function (err, res) {
 
 //                 if (err)
@@ -570,7 +561,6 @@ module.exports = {
     // view
 
     allEmployees: allEmployees,
-    // allEmployeesByDepartment: allEmployeesByDepartment,
     allDepartments: allDepartments,
     allEmployeeRoles: allEmployeeRoles,
 
