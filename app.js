@@ -29,8 +29,9 @@ connection.connect(function (err) {
 
   if (err) throw err;
 
-  console.log("Connected as ID# " + connection.threadId + "\n");
+  // console.log("Connected as ID# " + connection.threadId + "\n");
 
+  console.log("\n")
   console.log("\n")
   console.log("---------------------------------------------------")
   console.log("\nWelcome To Your Employee Content Management System!\n")
@@ -64,8 +65,8 @@ function mainMenu() {
         "View All Of The Departments",
         "View All Of The Employee Roles",
         "Add A New Department",
-        "Add A New Employee",
         "Add A New Employee Role",
+        "Add A New Employee",
         "Update An Employee's Role",
         // "Update An Employee's Manager",
         // "Remove An Existing Employee",
