@@ -15,7 +15,7 @@
 
 <p>&nbsp;<p>
 
-Developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as Content Management Systems. This command line application is useful for managing company's employees of all sizes using  using `Node,js`, `inquirer npm`, and `MySQL`. A user can view their entire employee roster, view all departments, view all roles, add roles, add departments, add employees, and update existing employee roles.
+Many developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as Content Management Systems. Many of these database interface types are powered by programming languages behind the scenes. This command line application is useful for managing a company database of any size through the use of `Node.js`, `inquirer npm`, and `MySQL`. A user can view their entire employee roster, view all departments, view all roles, add roles, add departments, add employees, and update existing employee roles.
 
 <p>&nbsp;<p>
 
@@ -87,7 +87,7 @@ To make use of this application, you must first download the repo, and then run 
 
 <p>&nbsp;<p>
 
-You can begin using this command line content management system by running `node app.js` within the terminal. A welcome screen along with menu items for actions is presented. The given code is already attached to an SQL file database with multiple tables that will allow a user to interact with, update, and add employees it.
+You can begin using this command line content management system by running `node app.js` within the terminal. A welcome screen along with menu items for actions is presented. The given code is already attached to an SQL file database with multiple tables that will allow a user to interact with, update, and add employees it. 
 
 <p>&nbsp;<p>
 
@@ -110,6 +110,7 @@ View a video overview on usage here:
 
 <p align= "center"><img src="assets/interface_tall.png" alt="interface" /></p>
 
+
 <p>&nbsp;</p>
 
 
@@ -119,6 +120,7 @@ View a video overview on usage here:
 
 
 ## Schema
+
 
 <p>&nbsp;<p>
 
