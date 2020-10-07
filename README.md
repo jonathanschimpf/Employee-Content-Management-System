@@ -62,7 +62,7 @@ View the application usage demo here =>‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎�
 <p>&nbsp;<p>
 
 
-To make use of this application, you must first download the repo, and then run `npm install` within the terminal to begin the install of `inquirer` & `MySQL` dependencies. These required dependencies are already provided within the included `package.json` file. 
+To make use of this application, you must first download the repo, and then run `npm install` within the terminal to begin the install of `inquirer``MySQL`, & `console.table` dependencies. These required dependencies are already provided within the included `package.json` file. 
 
 <p>&nbsp;<p>
 
@@ -108,7 +108,7 @@ View a video overview on usage here:
 <p>&nbsp;<p>
 
 
-<p align= "center"><img  width="1078" height="1300" src="assets/interface_tall.png" alt="interface" /></p>
+<p align= "center"><img src="assets/interface_tall.png" alt="interface" /></p>
 
 <p>&nbsp;</p>
 
@@ -210,8 +210,14 @@ This project is covered under the MIT license.
 `console.table` =>‏‏‎ ‎ ‏‏‎ ‎[Adds console.table method within node for convenience.](https://www.npmjs.com/package/console.table)
 
 
+<p>&nbsp;‏‏‎‏‏‎ ‎<strong>+</strong></p>
+
+
+`dotenv npm` =>‏‏‎ ‎ ‏‏‎ ‎[Shhhhhh!](https://www.npmjs.com/package/dotenv)
+
 
 <p>&nbsp;<p>
+
 
 
 ---
