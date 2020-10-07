@@ -197,7 +197,7 @@ This project is covered under the MIT license.
 <p>&nbsp;‏‏‎‏‏‎ ‎<strong>+</strong></p>
 
 
-`MySQL` =>‏‏‎ ‎ ‏‏‎ ‎[The world's most popular open source database ](hhttps://www.mysql.com/)
+`MySQL` =>‏‏‎ ‎ ‏‏‎ ‎[The world's most popular open source database ](https://www.mysql.com/)
 
 
 <p>&nbsp;‏‏‎‏‏‎ ‎<strong>+</strong></p>
