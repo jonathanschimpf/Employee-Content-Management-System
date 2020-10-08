@@ -87,7 +87,7 @@ To make use of this application, you must first download the repo, and then run 
 
 <p>&nbsp;<p>
 
-You can begin using this command line content management system by running `node app.js` within the terminal. A welcome screen along with menu items for actions is presented. The given code is already attached to an SQL file database with multiple tables that will allow a user to interact with, update, and add employees it. 
+You can begin using this command line content management system by running `node app.js` within the terminal. A welcome screen along with menu items for actions is presented. The given code is already attached to an SQL file database with multiple tables that will allow a user to interact with, update, and add employees to it. 
 
 <p>&nbsp;<p>
 

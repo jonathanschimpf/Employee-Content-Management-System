@@ -602,7 +602,6 @@ function removeEmployeeRole(connection, mainMenu) {
             connection.query("DELETE FROM role_info WHERE title = ?", response.title, function (err, res) {
 
                 if (err)
-
                     throw err;
 
                 console.log("\n\n");
