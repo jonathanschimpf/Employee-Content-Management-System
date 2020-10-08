@@ -77,6 +77,7 @@ function addNewEmployeeRole(connection, mainMenu) {
             return choice
 
         })
+
         inquirer.prompt([
 
             {
@@ -126,6 +127,7 @@ function addNewEmployeeRole(connection, mainMenu) {
                 message: "What department will this role be a part of?"
 
             }
+
 
         ]).then(function (response) {
 
@@ -365,15 +367,15 @@ function allEmployeeRoles(connection, mainMenu) {
 
 
 
-// *****************************
-// updating & deleting functions
-// *****************************
+// *************************
+// update & remove functions
+// *************************
 
 
 function updateEmployeeRole(connection, mainMenu) {
 
 
-    let newRole = {};
+    let roleUpdate = {};
 
     connection.query("SELECT employee_info.id, employee_info.first_name, employee_info.last_name, role_info.title, role_info.salary, department_info.department_name AS department, manager_alias.first_name AS manager FROM employee_info LEFT JOIN employee_info AS manager_alias ON manager_alias.id = employee_info.manager_id JOIN role_info ON employee_info.role_id = role_info.id JOIN department_info ON role_info.department_id = department_info.id ORDER BY employee_info.id", (err, res) => {
 
@@ -384,8 +386,9 @@ function updateEmployeeRole(connection, mainMenu) {
         inquirer.prompt([
 
             {
-                name: "employee_info",
                 type: "list",
+                name: "employee_info",
+                message: "Which one of your employees would you like to update?",
                 choices: function () {
 
                     let choice = [];
@@ -398,12 +401,11 @@ function updateEmployeeRole(connection, mainMenu) {
                     return choice;
                 },
 
-                message: "Which one of your employees would you like to update?"
             }
 
         ]).then(function (response) {
 
-            newRole.first_name = response.employee_info;
+            roleUpdate.first_name = response.employee_info;
 
             connection.query("SELECT * FROM role_info", function (err, res) {
 
@@ -414,8 +416,9 @@ function updateEmployeeRole(connection, mainMenu) {
                 inquirer.prompt([
 
                     {
-                        name: "newRole",
                         type: "list",
+                        name: "roleUpdate",
+                        message: "What would you like you to update their role to?",
                         choices: function () {
 
                             let choice = [];
@@ -427,20 +430,18 @@ function updateEmployeeRole(connection, mainMenu) {
 
                             return choice;
                         },
-
-                        message: "What would you like you to update their role to?"
                     }
 
                 ]).then(function (response) {
 
-                    connection.query("SELECT * FROM role_info WHERE title = ?", response.newRole, function (err, res) {
+                    connection.query("SELECT * FROM role_info WHERE title = ?", response.roleUpdate, function (err, res) {
 
                         if (err)
                             throw err;
 
-                        newRole.role_id = res[0].id;
+                        roleUpdate.role_id = res[0].id;
 
-                        connection.query("UPDATE employee_info SET role_id = ? WHERE first_name = ?", [newRole.role_id, newRole.first_name], function (err, res) {
+                        connection.query("UPDATE employee_info SET role_id = ? WHERE first_name = ?", [roleUpdate.role_id, roleUpdate.first_name], function (err, res) {
 
                             if (err)
                                 throw err;
@@ -465,6 +466,161 @@ function updateEmployeeRole(connection, mainMenu) {
 };
 
 
+
+
+function removeEmployee(connection, mainMenu) {
+
+    connection.query("SELECT * FROM employee_info", function (err, res) {
+
+        if (err)
+            throw err;
+
+
+        inquirer.prompt([
+
+            {
+
+                type: "list",
+                name: "first_name",
+                message: "Which existing employee would you like to remove?",
+                choices: function () {
+
+                    let choice = [];
+
+                    for (var i = 0; i < res.length; i++) {
+
+                        choice.push(res[i].first_name);
+                    }
+
+                    return choice;
+                },
+
+            }
+
+        ]).then(function (response) {
+
+
+            connection.query("DELETE FROM employee_info WHERE first_name = ?", response.first_name, function (err, res) {
+
+                if (err)
+                    throw err;
+
+                console.log("\n\n");
+                console.log("This employee has been successfully removed.");
+                console.log("\n\n");
+
+                mainMenu();
+
+            });
+        });
+    });
+};
+
+
+
+function removeDepartment(connection, mainMenu) {
+
+    connection.query("SELECT * FROM department_info", function (err, res) {
+
+        if (err)
+            throw err;
+
+
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "department_name",
+                message: "Which department would you like to remove?",
+                choices: function () {
+
+                    let choice = [];
+
+                    for (var i = 0; i < res.length; i++) {
+
+                        choice.push(res[i].department_name);
+                    }
+
+                    return choice;
+                },
+                
+            }
+        ])
+            .then(function (response) {
+
+                connection.query("DELETE FROM department_info WHERE department_name = ?", response.department_name, function (err, res) {
+
+                    if (err) 
+                        throw err;
+
+                    console.log("\n\n");    
+                    console.log("This department has been successfully removed.");
+                    console.log("\n\n");
+
+                    mainMenu();
+                
+                });
+            
+            });
+        
+        });
+   
+    };
+
+
+
+
+function removeEmployeeRole(connection, mainMenu) {
+
+    connection.query("SELECT * FROM role_info", function (err, res) {
+
+        if (err)
+            throw err;
+
+        inquirer.prompt([
+
+            {
+                type: "list",
+                name: "title",
+                message: "Which one of the current roles would you like to remove?",
+                choices: function () {
+
+                    let choice = [];
+
+                    for (var i = 0; i < res.length; i++) {
+
+                        choice.push(res[i].title);
+                    }
+
+                    return choice;
+                },
+
+            }
+
+        ]).then(function (response) {
+
+
+            connection.query("DELETE FROM role_info WHERE title = ?", response.title, function (err, res) {
+
+                if (err)
+
+                    throw err;
+
+                console.log("\n\n");
+                console.log("This role has been successfully removed.");
+                console.log("\n\n");
+
+                mainMenu();
+
+            });
+
+        });
+
+    });
+
+};
+
+
+
 // *** archived for future development ***
 
 // function updateEmployeeManager(connection, mainMenu) {
@@ -473,77 +629,6 @@ function updateEmployeeRole(connection, mainMenu) {
 
 //     mainMenu();
 // };
-
-
-// function removeEmployee(connection, mainMenu) {
-
-//     connection.query()
-
-//     mainMenu();
-
-// };
-
-
-// function removeDepartment(connection, mainMenu) {
-
-//     connection.query()
-
-//     mainMenu();
-
-// };
-
-// not working
-// function removeEmployeeRole(connection, mainMenu) {
-
-//     connection.query("SELECT * FROM role_info", function (err, res) {
-
-//         if (err)
-//             throw err;
-
-//         inquirer.prompt([
-
-//             {
-//                 type: "list",
-//                 name: "remove",
-//                 message: "Which one of the current roles would you like to remove?",
-//                 choices: function () {
-
-//                     let choice = [];
-
-//                     for (var i = 0; i < res.length; i++) {
-
-//                         choice.push(res[i].title);
-//                     }
-
-//                     return choice;
-//                 },
-
-//             }
-
-//         ]).then(function (response) {
-
-
-//             connection.query("DELETE FROM role_info WHERE title = ?", response.remove, function (err, res) {
-
-//                 if (err)
-
-//                     throw err;
-
-//                 console.log("\n\n");
-//                 console.log("This role has been successfully removed.");
-//                 console.log("\n\n");
-
-//                 mainMenu();
-
-//             });
-
-//         });
-
-//     });
-
-// };
-
-
 
 
 
@@ -575,10 +660,10 @@ module.exports = {
     // updating + deleting
 
     updateEmployeeRole: updateEmployeeRole,
-    // updateEmployeeManager: updateEmployeeManager,
-    // removeEmployee: removeEmployee,
-    // removeDepartment: removeDepartment,
-    // removeEmployeeRole: removeEmployeeRole,
+    removeEmployee: removeEmployee,
+    removeDepartment: removeDepartment,
+    removeEmployeeRole: removeEmployeeRole,
+ // updateEmployeeManager: updateEmployeeManager,
 
 
 };

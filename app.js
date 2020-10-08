@@ -69,9 +69,9 @@ function mainMenu() {
         "Add A New Employee",
         "Update An Employee's Role",
         // "Update An Employee's Manager",
-        // "Remove An Existing Employee",
-        // "Remove An Existing Department",
-        // "Remove An Existing Employee Role",
+        "Remove An Existing Employee",
+        "Remove An Existing Department",
+        "Remove An Existing Employee Role",
         "Exit The Application"
 
       ]
@@ -85,74 +85,71 @@ function mainMenu() {
 
       switch (response.selection) {
 
+
         // view 
 
-        // tested & working
         case "View All Of The Employees":
           functions.allEmployees(connection, mainMenu);
+          break;
+
+
+        case "View All Of The Departments":
+          functions.allDepartments(connection, mainMenu);
+          break;
+
+
+        case "View All Of The Employee Roles":
+          functions.allEmployeeRoles(connection, mainMenu);
           break;
 
         // case "View All Employees By Manager":
         //   functions.allEmployeesByManager(connection, mainMenu);
         //   break;
 
-        // tested & working
-        case "View All Of The Departments":
-          functions.allDepartments(connection, mainMenu);
-          break;
-
-        // tested & working
-        case "View All Of The Employee Roles":
-          functions.allEmployeeRoles(connection, mainMenu);
-          break;
-
 
         // add 
 
-        // tested & working
+
         case "Add A New Department":
           functions.addNewDepartment(connection, mainMenu);
           break;
 
-        //tested & working
+
         case "Add A New Employee":
           functions.addNewEmployee(connection, mainMenu);
           break;
 
-        // tested & working
+
         case "Add A New Employee Role":
           functions.addNewEmployeeRole(connection, mainMenu);
           break;
 
 
 
-        // update 
-        //tested & working
+        // update & remove
+
         case "Update An Employee's Role":
           functions.updateEmployeeRole(connection, mainMenu);
           break;
 
 
-        // case "Update An Employee's Manager":
-        //   functions.updateEmployeeManager(connection, mainMenu);
-        //   break;
+        case "Remove An Existing Employee":
+          functions.removeEmployee(connection, mainMenu);
+          break;
 
 
-        // remove 
+        case "Remove An Existing Department":
+          functions.removeDepartment(connection, mainMenu);
+          break;
 
-        // case "Remove An Existing Employee":
-        //   functions.removeEmployee(connection, mainMenu);
-        //   break;
+        case "Remove An Existing Employee Role":
+          functions.removeEmployeeRole(connection, mainMenu);
+          break;
 
+     // case "Update An Employee's Manager":
+      // functions.updateEmployeeManager(connection, mainMenu);
+      // break;
 
-        // case "Remove An Existing Department":
-        //   functions.removeDepartment(connection, mainMenu);
-        //   break;
-
-        //not working
-        // case "Remove An Existing Employee Role":
-        //   functions.removeEmployeeRole(connection, mainMenu);
-        //   break;
 
 
         // exit
