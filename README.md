@@ -15,7 +15,7 @@
 
 <p>&nbsp;<p>
 
-Many developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as Content Management Systems. Many of these database interface types are powered by programming languages behind the scenes. This command line application is useful for managing a company database of any size through the use of `Node.js`, `inquirer npm`, and `MySQL`. A user can view their entire employee roster, view all departments, view all roles, add roles, add departments, add employees, and update existing employee roles. They can also remove roles, employees, and departments.
+Many developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as Content Management Systems. Many of these database interface types are powered by programming languages behind the scenes. This command line application is useful for managing a company database of any size through the use of `Node.js`, `inquirer npm`, and `MySQL`. A user can view their entire employee roster, view all departments, view all roles, add/remove roles, add/remove departments, add/remove employees, and update existing employee roles. 
 
 <p>&nbsp;<p>
 
