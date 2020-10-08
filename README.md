@@ -20,7 +20,7 @@ Many developers are often tasked with creating interfaces that make it easy for 
 <p>&nbsp;<p>
 
 
-View the application usage demo here =>‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏[`DEMO`](https://drive.google.com/file/d/1ZZDiMGKPhI6_6DlrZGxzadJAeplmerOB/view?usp=sharing)
+View the application usage demo here =>‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏[`DEMO`](https://drive.google.com/file/d/1BDcNeDRa0n9gzBDbe5rwSq2BAZPsWsZ_/view)
 
 
 <p>&nbsp;<p>
@@ -96,7 +96,7 @@ You can begin using this command line content management system by running `node
 
 View a video overview on usage here:
 
-[![IMAGE](assets/video_screengrab.png)](https://drive.google.com/file/d/1ZZDiMGKPhI6_6DlrZGxzadJAeplmerOB/view?usp=sharing) 
+[![IMAGE](assets/video_screengrab.png)](https://drive.google.com/file/d/1BDcNeDRa0n9gzBDbe5rwSq2BAZPsWsZ_/view) 
 
 
 <p>&nbsp;<p>
